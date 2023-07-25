@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mxllions</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: grey;
+    }
+    
+    .fade-in {
+      animation: fade 2s ease-in;
+      opacity: 0;
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .Skill {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 35px;
+    }
+    
+    .discord-buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 21px;
+    }
+    
+    .discord-button {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      margin: 5px;
+    }
+    
+    .discord-button-icon {
+      width: 28px;
+      height: 28px;
+      background-size: cover;
+      filter: grayscale(100%);
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    
+    .discord-button-text {
+      font-size: 18px;
+      color: white;
+    }
+    
+    .view-counter {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .discord-button-bottom-right {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+    
+    .small-text {
+      font-size: 14px;
+      color: gray;
+      margin-top: 10px;
+    }
+    
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+    }
+    
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+      opacity: 1;
+    }
+    
+    .splash-screen-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 10px;
+    }
+    
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash-screen">
+    <div class="splash-screen-text">[Click Me]</div>
+    <div class="small-text">Lifestyle</div>
+  </div>
+
+  <video id="video-background" autoplay loop>
+    <source src="https://cdn.discordapp.com/attachments/1133428696796119070/1133433782804955206/wewantwraiths_-_Question_Us_Official_Video.mp4" type="video/mp4">
+  </video>
+  
+  <div class="view-counter">
+    <span id="counter">0</span> views
+  </div>
+  
+  <h1 class="fade-in">Mxllions</h1>
+  <h1 class="Skill">The New Way Of Life</h1>
+
+  <div class="discord-buttons-container">
+    <a class="discord-button" href="https://discord.gg/hmbUMDa3bC" target="_blank">
+      <div class="discord-button-icon" style="background-image: url('https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png');"></div>
+      <span class="discord-button-text"></span>
+    </a>
+    <a class="discord-button" href="https://discord.gg/atkrz" target="_blank">
+      <div class="discord-button-icon" style="background-image: url('https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png');"></div>
+      <span class="discord-button-text"></span>
+    </a>
+  </div>
+
+  <a class="discord-button discord-button-bottom-right" href="https://www.youtube.com/watch?v=OT13dlD-AGw&ab_channel=D%E2%80%99AydrianHardingz" target="_blank">
+    <div class="discord-button-icon" style="background-image: url('https://cdn.discordapp.com/attachments/1101516181904560219/1133432636174520383/YouTube_icon-icons.png');"></div>
+    <span class="discord-button-text"></span>
+  </a>
+
+  <script>
+    // Pause background video
+    var videoBackground = document.getElementById('video-background');
+    videoBackground.pause();
+
+    // Show splash screen on page load
+    var splashScreen = document.querySelector('.splash-screen');
+    splashScreen.style.display = 'flex';
+
+    // Hide splash screen on click
+    splashScreen.addEventListener('click', function() {
+      splashScreen.style.animation = 'fadeOut 1s';
+      videoBackground.play();
+      setTimeout(function() {
+        splashScreen.style.display = 'none';
+      }, 1000);
+    });
+
+    setTimeout(function(){
+      document.querySelector('.fade-in').style.opacity = 1;
+    }, 1);
+
+    // Update view counter
+    window.onload = function() {
+      if (typeof(Storage) !== "undefined") {
+        if (localStorage.pageviews) {
+          localStorage.pageviews = Number(localStorage.pageviews) + 1;
+        } else {
+          localStorage.pageviews = 1;
+        }
+        document.getElementById("counter").textContent = localStorage.pageviews;
+      }
+    };
+  </script>
+</body>
+</html>
